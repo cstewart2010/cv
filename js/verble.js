@@ -782,6 +782,5 @@ window.onkeydown = e => {
 }
 
 window.onload = () => {
-    console.log(WORD);
     addAttempt();
 }
