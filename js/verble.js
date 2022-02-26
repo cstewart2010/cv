@@ -654,6 +654,8 @@ const Solutions = [
     "Zowie"
 ];
 
+const WORD = Solutions[Math.floor(Math.random()*Solutions.length)].toLowerCase();
+
 const EndGameMessage= {
     "1": "Unbelievable!",
     "2": "Incredible!",
@@ -667,7 +669,6 @@ const EndGameMessage= {
 const SAVESTRING = "VERBLE_SAVE_FILE";
 const ALPHANUMERIC = "1234567890poiuytrewqasdfghjklmnbvcxz"
 let Iterator = 0;
-const WORD = Solutions[Math.floor(Math.random()*Solutions.length)].toLowerCase();
 
 function addAttempt(){
     Iterator++;
