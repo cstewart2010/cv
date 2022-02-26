@@ -661,7 +661,7 @@ const EndGameMessage= {
     "4": "Good job!",
     "5": "Not bad!",
     "6": "Clutch!",
-    "7": "The correct word was ${WORD}.!",
+    "7": `The correct word was ${WORD}!`,
 }
 
 const SAVESTRING = "VERBLE_SAVE_FILE";
