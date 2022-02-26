@@ -654,6 +654,16 @@ const Solutions = [
     "Zowie"
 ];
 
+const EndGameMessage= {
+    "1": "Unbelievable!",
+    "2": "Incredible!",
+    "3": "Splendid!",
+    "4": "Good job!",
+    "5": "Not bad!",
+    "6": "Clutch!",
+    "7": "The correct word was ${WORD}.!",
+}
+
 const SAVESTRING = "VERBLE_SAVE_FILE";
 const ALPHANUMERIC = "1234567890poiuytrewqasdfghjklmnbvcxz"
 let Iterator = 0;
@@ -668,7 +678,7 @@ function addAttempt(){
     let iterator = 1;
     while (iterator < 6){
         let letter = document.createElement("input");
-        letter.classList.add("col-2", "solution-letter", "m-2", "text-center", "border", "bg-dark", "text-white");
+        letter.classList.add("col-2", "solution-letter", "m-1", "text-center", "border", "bg-dark", "text-white");
         letter.setAttribute("type", "text");
         letter.maxLength = 1;
         const id = `letter-${Iterator}-${iterator}`
@@ -746,31 +756,9 @@ function saveResult(counter){
 
     save[counter]++;
     const sum = Object.values(save).reduce((a, b) => a + b);
-    switch (counter){
-        case "1":
-            console.log("Unbelievable!");
-            break;
-        case "2":
-            console.log("Incredible!");
-            break;
-        case "3":
-            console.log("Splendid");
-            break;
-        case "4":
-            console.log("Good job!");
-            break;
-        case "5":
-            console.log("Not bad!");
-            break;
-        case "6":
-            console.log("Clutch!");
-            break;
-        case "7":
-            console.log(`The correct word was ${WORD}.`);
-            break;
-    }
+    console.log(EndGameMessage[counter]);
     for (attempt in save){
-        console.log(`${attempt}: ${Math.round(save[attempt])*100/sum}%`);
+        console.log(`${attempt}: ${Math.round(save[attempt]*10000/sum)/100}%`);
     }
     localStorage.setItem(SAVESTRING, JSON.stringify(save));
 }
