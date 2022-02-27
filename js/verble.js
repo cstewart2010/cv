@@ -728,6 +728,7 @@ function check(){
                 letter.classList.remove("bg-dark")
                 letter.classList.add("bg-warning");
             }
+            word = word.replace(letter.value, "")
             letter.disabled = true;
             iterator++;
         })
