@@ -716,7 +716,7 @@ function check(){
     })
     guess = guess.toLowerCase();
     console.log(guess);
-    const word = WORD.toLowerCase();
+    let word = WORD.toLowerCase();
     if (Solutions.map(word => word.toLowerCase()).includes(guess)){  
         let iterator = 0
         thing.forEach(letter => {
@@ -724,11 +724,11 @@ function check(){
                 letter.classList.remove("bg-dark")
                 letter.classList.add("bg-success");
             }
-            else if (WORD.includes(letter.value)){
+            else if (word.includes(letter.value)){
                 letter.classList.remove("bg-dark")
                 letter.classList.add("bg-warning");
             }
-            word = word.replace(letter.value, "")
+            word = word.replace(letter.value, "");
             letter.disabled = true;
             iterator++;
         })
