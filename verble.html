@@ -50,7 +50,7 @@
                 </div>
             </div>
         </nav>
-        <h2 class="text-center text-white">Verble</h2>
+        <h2 class="text-center">Verble</h2>
         <div class="container" id="description">
             <p>
                 This is a quick recreation of Worldle for when NYT eventually locks the real thing behind a paywall.
@@ -64,6 +64,46 @@
     
             </div>
         </div>
+        <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
+            <div class="toast my-3 text-dark" id="invalid" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-body text-center">
+                    <span></span>
+                    <div class="mt-2 pt-2 border-top">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
+            <div class="toast my-3 text-dark" id="old-end-game" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header text-center">
+                  <strong class="me-auto">
+                      
+                  </strong>
+                </div>
+                <div class="toast-body text-center">
+                    <span></span>
+                    <div class="mt-2 pt-2 border-top">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="end-game" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title text-center text-dark" style="text-transform: uppercase;">
+                      
+                  </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center text-dark">
+                    
+                </div>
+              </div>
+            </div>
+          </div>
         <footer class="footer mt-auto py-3">
             <div class="container">
                 <a class="btn btn-secondary" href="https://github.com/cstewart2010/cv/issues/new" target="_blank" rel="noopener noreferrer">
@@ -71,6 +111,7 @@
                 </a>
             </div>
           </footer>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <script src="./js/verble.js"></script>
     </body>

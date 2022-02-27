@@ -666,7 +666,7 @@ const EndGameMessage= {
     "4": "Good job!",
     "5": "Not bad!",
     "6": "Clutch!",
-    "fail": `The correct word was ${WORD}!`,
+    "7": `The correct word was ${WORD}!`,
 }
 
 const SAVESTRING = "VERBLE_SAVE_FILE";
@@ -733,13 +733,14 @@ function check(){
             return;
         }
         else if (Iterator === 6){
-            addResultToSave("fail");
+            addResultToSave("7");
             return;
         }
         addAttempt();
     }
     else {
-        alert(`${guess} is not a valid Verble word`);
+        document.querySelector("#invalid .toast-body span").textContent = `${guess} is not a valid Verble word`;
+        $("#invalid").toast('show');
     }
 }
 
@@ -753,23 +754,31 @@ function addResultToSave(counter){
             "4": 0,
             "5": 0,
             "6": 0,
-            "fail": 0,
+            "7": 0,
         }
     }
 
     save[counter]++;
-    console.log(EndGameMessage[counter]);
     localStorage.setItem(SAVESTRING, JSON.stringify(save));
-    postResults();
+    postResults(counter);
 }
 
-function postResults(){
+function postResults(counter){
     const save = getSave();
     if (save){
         const sum = Object.values(save).reduce((a, b) => a + b);
+        console.log(EndGameMessage[counter]);
+        document.querySelector("#end-game .modal-title").textContent = EndGameMessage[counter];
         for (attempt in save){
-            console.log(`${attempt}: ${Math.round(save[attempt]*10000/sum)/100}%`);
+            const nextPart = `${attempt === "7" ? "fail" : attempt}: ${Math.round(save[attempt]*10000/sum)/100}%`
+            console.log(nextPart);
+            const div = document.createElement("div");
+            div.textContent = nextPart;
+            div.classList.add("text-dark");
+            document.querySelector("#end-game .modal-body").appendChild(div);
         }
+        (new bootstrap.Modal(document.getElementById('end-game'))).show()
+        // $("#end-game").toast('show');
     }
 }
 
