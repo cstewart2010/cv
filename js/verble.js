@@ -677,11 +677,11 @@ function addAttempt(){
     let container = document.createElement("div");
     container.classList.add("container");
     let attempt = document.createElement("div");
-    attempt.classList.add("row");
+    attempt.classList.add("d-flex", "justify-content-center");
     let iterator = 1;
     while (iterator < 6){
         let letter = document.createElement("input");
-        letter.classList.add("col", "solution-letter", "mh-100", "p-1", "d-inline-block", "m-1", "text-center", "border", "bg-dark", "text-white");
+        letter.classList.add("solution-letter", "p-1", "m-1", "text-center", "border", "bg-dark", "text-white");
         letter.setAttribute("type", "text");
         letter.maxLength = 1;
         letter.id = `letter-${Iterator}-${iterator}`;

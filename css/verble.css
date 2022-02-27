@@ -13,4 +13,6 @@
 .solution-letter {
     text-transform: uppercase;
     font-size: xx-large;
+    max-width: 70px;
+    max-height: 70px;
 }
