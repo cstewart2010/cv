@@ -656,7 +656,7 @@ const Solutions = [
     "Zowie"
 ];
 
-const WORD = "still" || Solutions[Math.floor(Math.random()*Solutions.length)].toLowerCase();
+const WORD = Solutions[Math.floor(Math.random()*Solutions.length)].toLowerCase();
 const ALPHANUMERICS = "1234567890poiuytrewqasdfghjklmnbvcxz";
 
 const EndGameMessage= {
