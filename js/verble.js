@@ -751,6 +751,9 @@ function check(){
             currentWord = currentWord.replace(letter.value, "");
             letter.disabled = true;
             iterator++;
+            console.log(letter.value);
+            document.querySelector(`#${letter.value}`).classList.remove("btn-light");
+            document.querySelector(`#${letter.value}`).classList.add("btn-dark", "border");
         })
         if (guess == WORD){
             addResultToSave(Iterator.toString());
