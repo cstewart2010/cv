@@ -264,7 +264,6 @@ const Solutions = [
     "Enter",
     "Exist",
     "Fight",
-    "Focus",
     "Force",
     "Guess",
     "Imply",
@@ -717,6 +716,7 @@ function check(){
     guess = guess.toLowerCase();
     console.log(guess);
     let word = WORD.toLowerCase();
+    let currentWord = word;
     if (Solutions.map(word => word.toLowerCase()).includes(guess)){  
         let iterator = 0
         thing.forEach(letter => {
@@ -724,11 +724,11 @@ function check(){
                 letter.classList.remove("bg-dark")
                 letter.classList.add("bg-success");
             }
-            else if (word.includes(letter.value)){
+            else if (currentWord.includes(letter.value)){
                 letter.classList.remove("bg-dark")
                 letter.classList.add("bg-warning");
             }
-            word = word.replace(letter.value, "");
+            currentWord = currentWord.replace(letter.value, "");
             letter.disabled = true;
             iterator++;
         })
