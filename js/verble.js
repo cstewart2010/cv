@@ -658,6 +658,7 @@ const Solutions = [
 ];
 
 const WORD = Solutions[Math.floor(Math.random()*Solutions.length)].toLowerCase();
+const ALPHANUMERICS = "1234567890poiuytrewqasdfghjklmnbvcxz";
 
 const EndGameMessage= {
     "1": "Unbelievable!",
@@ -693,8 +694,10 @@ function addAttempt(){
         }
         if (iterator < 5){
             const nextId = `letter-${Iterator}-${iterator+1}`;
-            letter.onkeyup = () => {
-                document.getElementById(nextId).focus();
+            letter.onkeyup = (e) => {
+                if (ALPHANUMERICS.includes(e.key)){
+                    document.getElementById(nextId).focus();
+                }
             }
         }
         attempt.appendChild(letter);
