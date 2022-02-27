@@ -658,6 +658,7 @@ const Solutions = [
 ];
 
 const WORD = Solutions[Math.floor(Math.random()*Solutions.length)].toLowerCase();
+const ALPHANUMERICS = "1234567890poiuytrewqasdfghjklmnbvcxz";
 
 const EndGameMessage= {
     "1": "Unbelievable!",
@@ -666,7 +667,7 @@ const EndGameMessage= {
     "4": "Good job!",
     "5": "Not bad!",
     "6": "Clutch!",
-    "fail": `The correct word was ${WORD}!`,
+    "7": `The correct word was ${WORD}!`,
 }
 
 const SAVESTRING = "VERBLE_SAVE_FILE";
@@ -681,7 +682,7 @@ function addAttempt(){
     let iterator = 1;
     while (iterator < 6){
         let letter = document.createElement("input");
-        letter.classList.add("col-2", "solution-letter", "m-1", "text-center", "border", "bg-dark", "text-white");
+        letter.classList.add("col", "solution-letter", "mh-100", "p-1", "d-inline-block", "m-1", "text-center", "border", "bg-dark", "text-white");
         letter.setAttribute("type", "text");
         letter.maxLength = 1;
         letter.id = `letter-${Iterator}-${iterator}`;
@@ -693,8 +694,10 @@ function addAttempt(){
         }
         if (iterator < 5){
             const nextId = `letter-${Iterator}-${iterator+1}`;
-            letter.onkeyup = () => {
-                document.getElementById(nextId).focus();
+            letter.onkeyup = (e) => {
+                if (ALPHANUMERICS.includes(e.key)){
+                    document.getElementById(nextId).focus();
+                }
             }
         }
         attempt.appendChild(letter);
@@ -713,7 +716,7 @@ function check(){
     })
     guess = guess.toLowerCase();
     console.log(guess);
-    const word = WORD.toLowerCase();
+    let word = WORD.toLowerCase();
     if (Solutions.map(word => word.toLowerCase()).includes(guess)){  
         let iterator = 0
         thing.forEach(letter => {
@@ -721,10 +724,11 @@ function check(){
                 letter.classList.remove("bg-dark")
                 letter.classList.add("bg-success");
             }
-            else if (WORD.includes(letter.value)){
+            else if (word.includes(letter.value)){
                 letter.classList.remove("bg-dark")
                 letter.classList.add("bg-warning");
             }
+            word = word.replace(letter.value, "");
             letter.disabled = true;
             iterator++;
         })
@@ -733,13 +737,14 @@ function check(){
             return;
         }
         else if (Iterator === 6){
-            addResultToSave("fail");
+            addResultToSave("7");
             return;
         }
         addAttempt();
     }
     else {
-        alert(`${guess} is not a valid Verble word`);
+        document.querySelector("#invalid .toast-body span").textContent = `${guess} is not a valid Verble word`;
+        $("#invalid").toast('show');
     }
 }
 
@@ -753,23 +758,31 @@ function addResultToSave(counter){
             "4": 0,
             "5": 0,
             "6": 0,
-            "fail": 0,
+            "7": 0,
         }
     }
 
     save[counter]++;
-    console.log(EndGameMessage[counter]);
     localStorage.setItem(SAVESTRING, JSON.stringify(save));
-    postResults();
+    postResults(counter);
 }
 
-function postResults(){
+function postResults(counter){
     const save = getSave();
     if (save){
         const sum = Object.values(save).reduce((a, b) => a + b);
+        console.log(EndGameMessage[counter]);
+        document.querySelector("#end-game .modal-title").textContent = EndGameMessage[counter];
         for (attempt in save){
-            console.log(`${attempt}: ${Math.round(save[attempt]*10000/sum)/100}%`);
+            const nextPart = `${attempt === "7" ? "fail" : attempt}: ${Math.round(save[attempt]*10000/sum)/100}%`
+            console.log(nextPart);
+            const div = document.createElement("div");
+            div.textContent = nextPart;
+            div.classList.add("text-dark");
+            document.querySelector("#end-game .modal-body").appendChild(div);
         }
+        (new bootstrap.Modal(document.getElementById('end-game'))).show()
+        // $("#end-game").toast('show');
     }
 }
 
