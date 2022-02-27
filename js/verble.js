@@ -682,7 +682,7 @@ function addAttempt(){
     let iterator = 1;
     while (iterator < 6){
         let letter = document.createElement("input");
-        letter.classList.add("col-2", "solution-letter", "m-1", "text-center", "border", "bg-dark", "text-white");
+        letter.classList.add("col-1", "col-md-2", "solution-letter", "mh-100", "py-3", "d-inline-block", "m-1", "text-center", "border", "bg-dark", "text-white");
         letter.setAttribute("type", "text");
         letter.maxLength = 1;
         letter.id = `letter-${Iterator}-${iterator}`;
