@@ -684,13 +684,18 @@ function addAttempt(){
         letter.classList.add("col-2", "solution-letter", "m-1", "text-center", "border", "bg-dark", "text-white");
         letter.setAttribute("type", "text");
         letter.maxLength = 1;
-        const id = `letter-${Iterator}-${iterator}`
-        letter.id = id;
+        letter.id = `letter-${Iterator}-${iterator}`;
         letter.onpaste = () => {
             return false;
         }
         letter.ondrop = () => {
             return false;
+        }
+        if (iterator < 5){
+            const nextId = `letter-${Iterator}-${iterator+1}`;
+            letter.onkeyup = () => {
+                document.getElementById(nextId).focus();
+            }
         }
         attempt.appendChild(letter);
         iterator++;
