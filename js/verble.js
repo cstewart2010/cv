@@ -656,7 +656,7 @@ const Solutions = [
     "Zowie"
 ];
 
-const WORD = Solutions[Math.floor(Math.random()*Solutions.length)].toLowerCase();
+const WORD = "still" || Solutions[Math.floor(Math.random()*Solutions.length)].toLowerCase();
 const ALPHANUMERICS = "1234567890poiuytrewqasdfghjklmnbvcxz";
 
 const EndGameMessage= {
@@ -691,13 +691,33 @@ function addAttempt(){
         letter.ondrop = () => {
             return false;
         }
-        if (iterator < 5){
-            const nextId = `letter-${Iterator}-${iterator+1}`;
-            letter.onkeyup = (e) => {
-                if (ALPHANUMERICS.includes(e.key)){
-                    document.getElementById(nextId).focus();
+        const previousId = `letter-${Iterator}-${iterator-1}`;
+        const nextId = `letter-${Iterator}-${iterator+1}`;
+        switch (iterator){
+            case 1:
+                letter.onkeyup = (e) => {
+                    if (ALPHANUMERICS.includes(e.key)){
+                        document.getElementById(nextId).focus();
+                    }
                 }
-            }
+                break;
+            case 5:
+                letter.onkeyup = (e) => {
+                    if (e.key === "Backspace"){
+                        document.getElementById(previousId).focus();
+                    }
+                }
+                break;
+            default:
+                letter.onkeyup = (e) => {
+                    if (ALPHANUMERICS.includes(e.key)){
+                        document.getElementById(nextId).focus();
+                    }
+                    if (e.key === "Backspace"){
+                        document.getElementById(previousId).focus();
+                    }
+                }
+                break;
         }
         attempt.appendChild(letter);
         iterator++;
