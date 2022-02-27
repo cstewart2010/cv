@@ -9,3 +9,7 @@
 .text-center {
     text-align: center;
 }
+
+.solution-letter {
+    text-transform: uppercase;
+}
