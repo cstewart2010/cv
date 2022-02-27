@@ -1,4 +1,8 @@
 const Solutions = [
+    "cries",
+    "plays",
+    "haste",
+    "caste",
     "Abuse",
     "Adult",
     "Agent",
@@ -269,7 +273,6 @@ const Solutions = [
     "Laugh",
     "Learn",
     "Leave",
-    "Let’s",
     "Limit",
     "Marry",
     "Match",
@@ -663,11 +666,10 @@ const EndGameMessage= {
     "4": "Good job!",
     "5": "Not bad!",
     "6": "Clutch!",
-    "7": `The correct word was ${WORD}!`,
+    "fail": `The correct word was ${WORD}!`,
 }
 
 const SAVESTRING = "VERBLE_SAVE_FILE";
-const ALPHANUMERIC = "1234567890poiuytrewqasdfghjklmnbvcxz"
 let Iterator = 0;
 
 function addAttempt(){
@@ -690,7 +692,6 @@ function addAttempt(){
         letter.ondrop = () => {
             return false;
         }
-        letter.style = "text-transform:uppercase";
         attempt.appendChild(letter);
         iterator++;
     }
@@ -723,11 +724,11 @@ function check(){
             iterator++;
         })
         if (guess == WORD){
-            saveResult(Iterator.toString());
+            addResultToSave(Iterator.toString());
             return;
         }
         else if (Iterator === 6){
-            saveResult("7");
+            addResultToSave("fail");
             return;
         }
         addAttempt();
@@ -737,10 +738,9 @@ function check(){
     }
 }
 
-function saveResult(counter){
-    const saveData = localStorage.getItem(SAVESTRING);
-    let save = {}
-    if (!saveData){
+function addResultToSave(counter){
+    let save = getSave();
+    if (!save){
         save = {
             "1": 0,
             "2": 0,
@@ -748,20 +748,28 @@ function saveResult(counter){
             "4": 0,
             "5": 0,
             "6": 0,
-            "7": 0,
+            "fail": 0,
         }
-    }
-    else {
-        save = JSON.parse(saveData);
     }
 
     save[counter]++;
-    const sum = Object.values(save).reduce((a, b) => a + b);
     console.log(EndGameMessage[counter]);
-    for (attempt in save){
-        console.log(`${attempt}: ${Math.round(save[attempt]*10000/sum)/100}%`);
-    }
     localStorage.setItem(SAVESTRING, JSON.stringify(save));
+    postResults();
+}
+
+function postResults(){
+    const save = getSave();
+    if (save){
+        const sum = Object.values(save).reduce((a, b) => a + b);
+        for (attempt in save){
+            console.log(`${attempt}: ${Math.round(save[attempt]*10000/sum)/100}%`);
+        }
+    }
+}
+
+function getSave(){
+    return JSON.parse(localStorage.getItem(SAVESTRING));
 }
 
 window.onkeydown = e => {
