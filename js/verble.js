@@ -264,7 +264,6 @@ const Solutions = [
     "Enter",
     "Exist",
     "Fight",
-    "Focus",
     "Force",
     "Guess",
     "Imply",
