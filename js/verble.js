@@ -671,6 +671,7 @@ const EndGameMessage= {
 
 const SAVESTRING = "VERBLE_SAVE_FILE";
 let Iterator = 0;
+let VerblePosition = 1;
 
 function addAttempt(){
     Iterator++;
@@ -691,39 +692,41 @@ function addAttempt(){
         letter.ondrop = () => {
             return false;
         }
-        const previousId = `letter-${Iterator}-${iterator-1}`;
         const nextId = `letter-${Iterator}-${iterator+1}`;
-        switch (iterator){
-            case 1:
-                letter.onkeyup = (e) => {
-                    if (ALPHANUMERICS.includes(e.key)){
-                        document.getElementById(nextId).focus();
-                    }
+        letter.onkeyup = (e) => {
+            if (ALPHANUMERICS.includes(e.key)){
+                if (VerblePosition < 5){
+                    document.getElementById(nextId).focus();
+                    VerblePosition++;
                 }
-                break;
-            case 5:
-                letter.onkeyup = (e) => {
-                    if (e.key === "Backspace"){
-                        document.getElementById(previousId).focus();
-                    }
-                }
-                break;
-            default:
-                letter.onkeyup = (e) => {
-                    if (ALPHANUMERICS.includes(e.key)){
-                        document.getElementById(nextId).focus();
-                    }
-                    if (e.key === "Backspace"){
-                        document.getElementById(previousId).focus();
-                    }
-                }
-                break;
+            }
+        }
+        letter.onkeydown = e => {
+            if (!ALPHANUMERICS.includes(e.key)){
+                return false;
+            }
         }
         attempt.appendChild(letter);
         iterator++;
     }
     container.appendChild(attempt);
     document.getElementById("attempts").appendChild(container);
+}
+
+function clickLetter(letter){
+    document.getElementById(`letter-${Iterator}-${VerblePosition}`).value = letter;
+    if (VerblePosition < 5){
+        VerblePosition++;
+    }
+    document.getElementById(`letter-${Iterator}-${VerblePosition}`).focus();
+}
+
+function deleteLetter(){
+    document.getElementById(`letter-${Iterator}-${VerblePosition}`).value = '';
+    if (VerblePosition > 1){
+        VerblePosition--;
+    }
+    document.getElementById(`letter-${Iterator}-${VerblePosition}`).focus();
 }
 
 function check(){
@@ -740,19 +743,30 @@ function check(){
     if (Solutions.map(word => word.toLowerCase()).includes(guess)){  
         let iterator = 0
         thing.forEach(letter => {
+            const letterButton = document.querySelector(`#${letter.value}`);
             if (word[iterator] === letter.value){
                 letter.classList.remove("bg-dark")
                 letter.classList.add("bg-success");
+                letterButton.classList.remove("btn-light", "bg-warning");
+                letterButton.classList.add("bg-success", "border");
             }
             else if (currentWord.includes(letter.value)){
                 letter.classList.remove("bg-dark")
                 letter.classList.add("bg-warning");
+                if (!letterButton.classList.contains("bg-success")){
+                    letterButton.classList.remove("btn-light");
+                    letterButton.classList.add("bg-warning", "border");
+                }
+            }
+            else {
+                if (!(letterButton.classList.contains("bg-success") || letterButton.classList.contains("bg-warning"))){
+                    document.querySelector(`#${letter.value}`).classList.remove("btn-light");
+                    document.querySelector(`#${letter.value}`).classList.add("btn-dark", "border");
+                }
             }
             currentWord = currentWord.replace(letter.value, "");
             letter.disabled = true;
             iterator++;
-            document.querySelector(`#${letter.value}`).classList.remove("btn-light");
-            document.querySelector(`#${letter.value}`).classList.add("btn-dark", "border");
         })
         if (guess == WORD){
             addResultToSave(Iterator.toString());
@@ -763,6 +777,7 @@ function check(){
             return;
         }
         addAttempt();
+        VerblePosition = 1;
     }
     else {
         document.querySelector("#invalid .toast-body span").textContent = `${guess} is not a valid Verble word`;
@@ -815,6 +830,9 @@ function getSave(){
 window.onkeydown = e => {
     if (e.key === "Enter"){
         check();
+    }
+    if (e.key === "Backspace" || e.key === "Delete"){
+        deleteLetter();
     }
 }
 
