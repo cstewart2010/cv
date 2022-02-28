@@ -681,30 +681,14 @@ function addAttempt(){
     attempt.classList.add("d-flex", "justify-content-center");
     let iterator = 1;
     while (iterator < 6){
-        let letter = document.createElement("input");
-        letter.classList.add("solution-letter", "p-1", "m-1", "text-center", "border", "bg-dark", "text-white");
-        letter.setAttribute("type", "text");
-        letter.maxLength = 1;
+        let letter = document.createElement("div");
+        letter.classList.add("solution-letter", "p-2", "m-1", "text-center", "border", "bg-dark", "text-white");
         letter.id = `letter-${Iterator}-${iterator}`;
         letter.onpaste = () => {
             return false;
         }
         letter.ondrop = () => {
             return false;
-        }
-        const nextId = `letter-${Iterator}-${iterator+1}`;
-        letter.onkeyup = (e) => {
-            if (ALPHANUMERICS.includes(e.key)){
-                if (VerblePosition < 5){
-                    document.getElementById(nextId).focus();
-                    VerblePosition++;
-                }
-            }
-        }
-        letter.onkeydown = e => {
-            if (!ALPHANUMERICS.includes(e.key)){
-                return false;
-            }
         }
         attempt.appendChild(letter);
         iterator++;
@@ -714,19 +698,17 @@ function addAttempt(){
 }
 
 function clickLetter(letter){
-    document.getElementById(`letter-${Iterator}-${VerblePosition}`).value = letter;
+    document.getElementById(`letter-${Iterator}-${VerblePosition}`).textContent = letter
     if (VerblePosition < 5){
         VerblePosition++;
     }
-    document.getElementById(`letter-${Iterator}-${VerblePosition}`).focus();
 }
 
 function deleteLetter(){
-    document.getElementById(`letter-${Iterator}-${VerblePosition}`).value = '';
+    document.getElementById(`letter-${Iterator}-${VerblePosition}`).textContent = '';
     if (VerblePosition > 1){
         VerblePosition--;
     }
-    document.getElementById(`letter-${Iterator}-${VerblePosition}`).focus();
 }
 
 function check(){
@@ -734,7 +716,7 @@ function check(){
     var thing = lastChild.querySelectorAll(".solution-letter");
     let guess = '';
     thing.forEach(letter => {
-        guess += letter.value;
+        guess += letter.textContent;
     })
     guess = guess.toLowerCase();
     console.log(guess);
@@ -743,28 +725,28 @@ function check(){
     if (Solutions.map(word => word.toLowerCase()).includes(guess)){  
         let iterator = 0
         thing.forEach(letter => {
-            const letterButton = document.querySelector(`#${letter.value}`);
-            if (word[iterator] === letter.value){
+            const letterButton = document.querySelector(`#${letter.textContent}`);
+            if (word[iterator] === letter.textContent){
                 letter.classList.remove("bg-dark")
                 letter.classList.add("bg-success");
-                letterButton.classList.remove("btn-light", "bg-warning");
-                letterButton.classList.add("bg-success", "border");
+                letterButton.classList.remove("btn-light", "bg-warning", "btn-dark", "border", "border-warning");
+                letterButton.classList.add("bg-success", "border-success");
             }
-            else if (currentWord.includes(letter.value)){
+            else if (currentWord.includes(letter.textContent)){
                 letter.classList.remove("bg-dark")
                 letter.classList.add("bg-warning");
                 if (!letterButton.classList.contains("bg-success")){
-                    letterButton.classList.remove("btn-light");
-                    letterButton.classList.add("bg-warning", "border");
+                    letterButton.classList.remove("btn-light", "btn-dark", "border");
+                    letterButton.classList.add("bg-warning", "border-warning");
                 }
             }
             else {
                 if (!(letterButton.classList.contains("bg-success") || letterButton.classList.contains("bg-warning"))){
-                    document.querySelector(`#${letter.value}`).classList.remove("btn-light");
-                    document.querySelector(`#${letter.value}`).classList.add("btn-dark", "border");
+                    document.querySelector(`#${letter.textContent}`).classList.remove("btn-light");
+                    document.querySelector(`#${letter.textContent}`).classList.add("btn-dark", "border");
                 }
             }
-            currentWord = currentWord.replace(letter.value, "");
+            currentWord = currentWord.replace(letter.textContent, "");
             letter.disabled = true;
             iterator++;
         })
@@ -786,6 +768,10 @@ function check(){
 }
 
 function addResultToSave(counter){
+    document.querySelectorAll(".d-flex.justify-content-center button").forEach(button => {
+        button.disabled = true;
+    })
+    window.onkeydown = () => false;
     let save = getSave();
     if (!save){
         save = {
@@ -833,6 +819,9 @@ window.onkeydown = e => {
     }
     if (e.key === "Backspace" || e.key === "Delete"){
         deleteLetter();
+    }
+    if (ALPHANUMERICS.includes(e.key)){
+        clickLetter(e.key);
     }
 }
 
