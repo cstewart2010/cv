@@ -672,6 +672,7 @@ const EndGameMessage= {
 const SAVESTRING = "VERBLE_SAVE_FILE";
 let Iterator = 0;
 let VerblePosition = 1;
+let IsGameActive = true;
 
 function addAttempt(){
     Iterator++;
@@ -767,7 +768,7 @@ function check(){
     }
 }
 
-function addResultToSave(counter){
+const addResultToSave = (counter) => {
     document.querySelectorAll(".d-flex.justify-content-center button").forEach(button => {
         button.disabled = true;
     })
@@ -787,6 +788,7 @@ function addResultToSave(counter){
 
     save[counter]++;
     localStorage.setItem(SAVESTRING, JSON.stringify(save));
+    IsGameActive = false;
     postResults(counter);
 }
 
@@ -805,7 +807,6 @@ function postResults(counter){
             document.querySelector("#end-game .modal-body").appendChild(div);
         }
         (new bootstrap.Modal(document.getElementById('end-game'))).show()
-        // $("#end-game").toast('show');
     }
 }
 
@@ -813,17 +814,19 @@ function getSave(){
     return JSON.parse(localStorage.getItem(SAVESTRING));
 }
 
-window.onkeydown = e => {
-    if (e.key === "Enter"){
-        check();
+$(window).keydown(e => {
+    if (IsGameActive){
+        if (e.key === "Enter"){
+            check();
+        }
+        if (e.key === "Backspace" || e.key === "Delete"){
+            deleteLetter();
+        }
+        if (ALPHANUMERICS.includes(e.key)){
+            clickLetter(e.key);
+        }
     }
-    if (e.key === "Backspace" || e.key === "Delete"){
-        deleteLetter();
-    }
-    if (ALPHANUMERICS.includes(e.key)){
-        clickLetter(e.key);
-    }
-}
+})
 
 window.onload = () => {
     addAttempt();

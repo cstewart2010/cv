@@ -74,21 +74,6 @@
                 </div>
             </div>
         </div>
-        <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
-            <div class="toast my-3 text-dark" id="old-end-game" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header text-center">
-                  <strong class="me-auto">
-                      
-                  </strong>
-                </div>
-                <div class="toast-body text-center">
-                    <span></span>
-                    <div class="mt-2 pt-2 border-top">
-                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="modal fade" id="end-game" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
@@ -104,40 +89,40 @@
               </div>
             </div>
         </div>
-        <div class="container my-auto w-50">
+        <div class="containermx mx-auto my-auto w-50">
             <div class="d-flex justify-content-center">
-                <button class="m-2 p-2 btn btn-light" id="q" onclick="clickLetter('q')">Q</button>
-                <button class="m-2 p-2 btn btn-light" id="w" onclick="clickLetter('w')">W</button>
-                <button class="m-2 p-2 btn btn-light" id="e" onclick="clickLetter('e')">E</button>
-                <button class="m-2 p-2 btn btn-light" id="r" onclick="clickLetter('r')">R</button>
-                <button class="m-2 p-2 btn btn-light" id="t" onclick="clickLetter('t')">T</button>
-                <button class="m-2 p-2 btn btn-light" id="y" onclick="clickLetter('y')">Y</button>
-                <button class="m-2 p-2 btn btn-light" id="u" onclick="clickLetter('u')">U</button>
-                <button class="m-2 p-2 btn btn-light" id="i" onclick="clickLetter('i')">I</button>
-                <button class="m-2 p-2 btn btn-light" id="o" onclick="clickLetter('o')">O</button>
-                <button class="m-2 p-2 btn btn-light" id="p" onclick="clickLetter('p')">P</button>
+                <button class="m-2 p-2 col btn btn-light" id="q" onclick="clickLetter('q')">Q</button>
+                <button class="m-2 p-2 col btn btn-light" id="w" onclick="clickLetter('w')">W</button>
+                <button class="m-2 p-2 col btn btn-light" id="e" onclick="clickLetter('e')">E</button>
+                <button class="m-2 p-2 col btn btn-light" id="r" onclick="clickLetter('r')">R</button>
+                <button class="m-2 p-2 col btn btn-light" id="t" onclick="clickLetter('t')">T</button>
+                <button class="m-2 p-2 col btn btn-light" id="y" onclick="clickLetter('y')">Y</button>
+                <button class="m-2 p-2 col btn btn-light" id="u" onclick="clickLetter('u')">U</button>
+                <button class="m-2 p-2 col btn btn-light" id="i" onclick="clickLetter('i')">I</button>
+                <button class="m-2 p-2 col btn btn-light" id="o" onclick="clickLetter('o')">O</button>
+                <button class="m-2 p-2 col btn btn-light" id="p" onclick="clickLetter('p')">P</button>
             </div>
             <div class="d-flex justify-content-center">
-                <button class="m-2 p-2 btn btn-light" id="a" onclick="clickLetter('a')">A</button>
-                <button class="m-2 p-2 btn btn-light" id="s" onclick="clickLetter('s')">S</button>
-                <button class="m-2 p-2 btn btn-light" id="d" onclick="clickLetter('d')">D</button>
-                <button class="m-2 p-2 btn btn-light" id="f" onclick="clickLetter('f')">F</button>
-                <button class="m-2 p-2 btn btn-light" id="g" onclick="clickLetter('g')">G</button>
-                <button class="m-2 p-2 btn btn-light" id="h" onclick="clickLetter('h')">H</button>
-                <button class="m-2 p-2 btn btn-light" id="j" onclick="clickLetter('j')">J</button>
-                <button class="m-2 p-2 btn btn-light" id="k" onclick="clickLetter('k')">K</button>
-                <button class="m-2 p-2 btn btn-light" id="l" onclick="clickLetter('l')">L</button>
+                <button class="m-2 p-2 col btn btn-light" id="a" onclick="clickLetter('a')">A</button>
+                <button class="m-2 p-2 col btn btn-light" id="s" onclick="clickLetter('s')">S</button>
+                <button class="m-2 p-2 col btn btn-light" id="d" onclick="clickLetter('d')">D</button>
+                <button class="m-2 p-2 col btn btn-light" id="f" onclick="clickLetter('f')">F</button>
+                <button class="m-2 p-2 col btn btn-light" id="g" onclick="clickLetter('g')">G</button>
+                <button class="m-2 p-2 col btn btn-light" id="h" onclick="clickLetter('h')">H</button>
+                <button class="m-2 p-2 col btn btn-light" id="j" onclick="clickLetter('j')">J</button>
+                <button class="m-2 p-2 col btn btn-light" id="k" onclick="clickLetter('k')">K</button>
+                <button class="m-2 p-2 col btn btn-light" id="l" onclick="clickLetter('l')">L</button>
             </div>
             <div class="d-flex justify-content-center">
-                <button class="m-2 p-2 btn btn-light" id="enter" onclick="check()">Enter</button>
-                <button class="m-2 p-2 btn btn-light" id="z" onclick="clickLetter('z')">Z</button>
-                <button class="m-2 p-2 btn btn-light" id="x" onclick="clickLetter('x')">X</button>
-                <button class="m-2 p-2 btn btn-light" id="c" onclick="clickLetter('c')">C</button>
-                <button class="m-2 p-2 btn btn-light" id="v" onclick="clickLetter('v')">V</button>
-                <button class="m-2 p-2 btn btn-light" id="b" onclick="clickLetter('b')">B</button>
-                <button class="m-2 p-2 btn btn-light" id="n" onclick="clickLetter('n')">N</button>
-                <button class="m-2 p-2 btn btn-light" id="m" onclick="clickLetter('m')">M</button>
-                <button class="m-2 p-2 btn btn-light" id="m" onclick="deleteLetter()"><i class="fa-solid fa-delete-left"></i></button>                
+                <button class="m-2 p-2 col btn btn-light" id="enter" onclick="check()">Enter</button>
+                <button class="m-2 p-2 col btn btn-light" id="z" onclick="clickLetter('z')">Z</button>
+                <button class="m-2 p-2 col btn btn-light" id="x" onclick="clickLetter('x')">X</button>
+                <button class="m-2 p-2 col btn btn-light" id="c" onclick="clickLetter('c')">C</button>
+                <button class="m-2 p-2 col btn btn-light" id="v" onclick="clickLetter('v')">V</button>
+                <button class="m-2 p-2 col btn btn-light" id="b" onclick="clickLetter('b')">B</button>
+                <button class="m-2 p-2 col btn btn-light" id="n" onclick="clickLetter('n')">N</button>
+                <button class="m-2 p-2 col btn btn-light" id="m" onclick="clickLetter('m')">M</button>
+                <button class="m-2 p-2 col btn btn-light" id="m" onclick="deleteLetter()"><i class="fa-solid fa-delete-left"></i></button>                
             </div>
         </div>
         <footer class="footer mt-auto py-3">
