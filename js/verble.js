@@ -140,14 +140,56 @@ function postResults(counter){
         const sum = Object.values(save).reduce((a, b) => a + b);
         console.log(EndGameMessage[counter]);
         document.querySelector("#end-game .modal-title").textContent = EndGameMessage[counter];
+        const modalBody = document.querySelector("#end-game .modal-body");
         for (attempt in save){
             const nextPart = `${attempt === "7" ? "fail" : attempt}: ${Math.round(save[attempt]*10000/sum)/100}%`
             console.log(nextPart);
             const div = document.createElement("div");
             div.textContent = nextPart;
             div.classList.add("text-dark");
-            document.querySelector("#end-game .modal-body").appendChild(div);
+            modalBody.appendChild(div);
         }
+        let copiedText = `Verble [${WORD.toUpperCase()}]\n`;
+        document.querySelectorAll("#attempts .d-flex.justify-content-center").forEach(element => {
+            let divText = '';
+            element.querySelectorAll(".solution-letter").forEach(letterElement => {
+                if (letterElement.classList.contains("bg-dark")){
+                    divText += String.fromCodePoint(0x2b1b);
+                }
+                if (letterElement.classList.contains("bg-warning")){
+                    divText += String.fromCodePoint(0x1f7e8);
+                }
+                if (letterElement.classList.contains("bg-success")){
+                    divText += String.fromCodePoint(0x1f7e9);
+                }
+            })
+            copiedText += `${divText}\n`
+        });
+        const button = document.createElement("button");
+        button.onclick = () => {
+            if (navigator.share){
+                navigator.share({
+                    title: `Verble [${WORD.toUpperCase()}]`,
+                    text: copiedText
+                }).then(() => {
+                    navigator.clipboard.writeText(copiedText.trim());
+                    document.getElementById("modal-share-text").textContent = "Copied.";
+                })
+            }
+            else {
+                navigator.clipboard.writeText(copiedText.trim());
+                document.getElementById("modal-share-text").textContent = "Copied.";
+            }
+        }
+        button.textContent = "Share "
+        button.classList.add("btn", "btn-primary");
+        const shareIcon  = document.createElement("i");
+        shareIcon.classList.add("fa", "fa-share-alt");
+        button.appendChild(shareIcon);
+        modalBody.appendChild(button);
+        const shareText = document.createElement("div");
+        shareText.id = "modal-share-text";
+        modalBody.appendChild(shareText);
         (new bootstrap.Modal(document.getElementById('end-game'))).show()
     }
 }
