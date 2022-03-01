@@ -149,7 +149,7 @@ function postResults(counter){
             div.classList.add("text-dark");
             modalBody.appendChild(div);
         }
-        let copiedText = `Verble: ${WORD}`;
+        let copiedText = `Verble [${WORD.toUpperCase()}]\n`;
         document.querySelectorAll("#attempts .d-flex.justify-content-center").forEach(element => {
             let divText = '';
             element.querySelectorAll(".solution-letter").forEach(letterElement => {
@@ -167,7 +167,15 @@ function postResults(counter){
         });
         const button = document.createElement("button");
         button.onclick = () => {
-            navigator.clipboard.writeText(copiedText.trim());
+            if (navigator.share){
+                navigator.share({
+                    title: `Verble [${WORD.toUpperCase()}]`,
+                    url: copiedText
+                })
+            }
+            else {
+                navigator.clipboard.writeText(copiedText.trim());
+            }
         }
         button.textContent = "Share "
         button.classList.add("btn", "btn-primary");
