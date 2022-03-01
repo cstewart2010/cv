@@ -166,6 +166,7 @@ function postResults(counter){
             });
             copiedText += `${divText}\n`;
         });
+        copiedText = copiedText.trim();
         const button = document.createElement("button");
         button.onclick = () => {
             if (navigator.share){
@@ -177,7 +178,7 @@ function postResults(counter){
                 });
             }
             else {
-                navigator.clipboard.writeText(copiedText.trim())
+                navigator.clipboard.writeText(copiedText)
                 .then(() => {
                     document.getElementById("modal-share-text").textContent = "Copied.";
                 })
