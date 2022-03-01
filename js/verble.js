@@ -149,7 +149,8 @@ function postResults(counter){
             div.classList.add("text-dark");
             modalBody.appendChild(div);
         }
-        let copiedText = `Verble [${WORD.toUpperCase()}]\n`;
+        const title = `Verble [${WORD.toUpperCase()}] ${attempt}/6`;
+        let copiedText = `${title}\n`;
         document.querySelectorAll("#attempts .d-flex.justify-content-center").forEach(element => {
             let divText = '';
             element.querySelectorAll(".solution-letter").forEach(letterElement => {
@@ -162,23 +163,27 @@ function postResults(counter){
                 if (letterElement.classList.contains("bg-success")){
                     divText += String.fromCodePoint(0x1f7e9);
                 }
-            })
-            copiedText += `${divText}\n`
+            });
+            copiedText += `${divText}\n`;
         });
         const button = document.createElement("button");
         button.onclick = () => {
             if (navigator.share){
                 navigator.share({
-                    title: `Verble [${WORD.toUpperCase()}]`,
+                    title,
                     text: copiedText
-                }).then(() => {
-                    navigator.clipboard.writeText(copiedText.trim());
-                    document.getElementById("modal-share-text").textContent = "Copied.";
-                })
+                }).catch(reason => {
+                    document.getElementById("modal-share-text").textContent = reason;
+                });
             }
             else {
-                navigator.clipboard.writeText(copiedText.trim());
-                document.getElementById("modal-share-text").textContent = "Copied.";
+                navigator.clipboard.writeText(copiedText.trim())
+                .then(() => {
+                    document.getElementById("modal-share-text").textContent = "Copied.";
+                })
+                .catch(reason => {
+                    document.getElementById("modal-share-text").textContent = reason;
+                });
             }
         }
         button.textContent = "Share "
