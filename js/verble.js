@@ -170,7 +170,7 @@ function postResults(counter){
             if (navigator.share){
                 navigator.share({
                     title: `Verble [${WORD.toUpperCase()}]`,
-                    url: copiedText
+                    text: copiedText
                 })
             }
             else {
