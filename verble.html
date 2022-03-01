@@ -53,13 +53,18 @@
         <h2 class="text-center">Verble</h2>
         <div class="container" id="description">
             <p>
-                This is a quick recreation of Worldle for when NYT eventually locks the real thing behind a paywall. &#129001;
+                This is a quick recreation of Worldle for when NYT eventually locks the real thing behind a paywall.
             </p>
             <p>
                 You can view the results of each game in the browser console. Also, you can play multiple times a day. Have fun!
             </p>
+            <div class="py-2">
+                <a class="btn btn-secondary" href="https://github.com/cstewart2010/cv/issues/new" target="_blank" rel="noopener noreferrer">
+                    Got any suggestions or missing words?
+                </a>
+            </div>
         </div>
-        <div class="container my-auto w-50">
+        <div class="container my-2 w-50">
             <div id="attempts">
     
             </div>
@@ -89,47 +94,42 @@
               </div>
             </div>
         </div>
-        <div class="containermx mx-auto my-auto w-50">
-            <div class="d-flex justify-content-center">
-                <button class="m-2 p-2 btn btn-light" id="q" onclick="clickLetter('q')">Q</button>
-                <button class="m-2 p-2 btn btn-light" id="w" onclick="clickLetter('w')">W</button>
-                <button class="m-2 p-2 btn btn-light" id="e" onclick="clickLetter('e')">E</button>
-                <button class="m-2 p-2 btn btn-light" id="r" onclick="clickLetter('r')">R</button>
-                <button class="m-2 p-2 btn btn-light" id="t" onclick="clickLetter('t')">T</button>
-                <button class="m-2 p-2 btn btn-light" id="y" onclick="clickLetter('y')">Y</button>
-                <button class="m-2 p-2 btn btn-light" id="u" onclick="clickLetter('u')">U</button>
-                <button class="m-2 p-2 btn btn-light" id="i" onclick="clickLetter('i')">I</button>
-                <button class="m-2 p-2 btn btn-light" id="o" onclick="clickLetter('o')">O</button>
-                <button class="m-2 p-2 btn btn-light" id="p" onclick="clickLetter('p')">P</button>
-            </div>
-            <div class="d-flex justify-content-center">
-                <button class="m-2 p-2 btn btn-light" id="a" onclick="clickLetter('a')">A</button>
-                <button class="m-2 p-2 btn btn-light" id="s" onclick="clickLetter('s')">S</button>
-                <button class="m-2 p-2 btn btn-light" id="d" onclick="clickLetter('d')">D</button>
-                <button class="m-2 p-2 btn btn-light" id="f" onclick="clickLetter('f')">F</button>
-                <button class="m-2 p-2 btn btn-light" id="g" onclick="clickLetter('g')">G</button>
-                <button class="m-2 p-2 btn btn-light" id="h" onclick="clickLetter('h')">H</button>
-                <button class="m-2 p-2 btn btn-light" id="j" onclick="clickLetter('j')">J</button>
-                <button class="m-2 p-2 btn btn-light" id="k" onclick="clickLetter('k')">K</button>
-                <button class="m-2 p-2 btn btn-light" id="l" onclick="clickLetter('l')">L</button>
-            </div>
-            <div class="d-flex justify-content-center">
-                <button class="m-2 p-2 btn btn-light" id="enter" onclick="check()">Enter</button>
-                <button class="m-2 p-2 btn btn-light" id="z" onclick="clickLetter('z')">Z</button>
-                <button class="m-2 p-2 btn btn-light" id="x" onclick="clickLetter('x')">X</button>
-                <button class="m-2 p-2 btn btn-light" id="c" onclick="clickLetter('c')">C</button>
-                <button class="m-2 p-2 btn btn-light" id="v" onclick="clickLetter('v')">V</button>
-                <button class="m-2 p-2 btn btn-light" id="b" onclick="clickLetter('b')">B</button>
-                <button class="m-2 p-2 btn btn-light" id="n" onclick="clickLetter('n')">N</button>
-                <button class="m-2 p-2 btn btn-light" id="m" onclick="clickLetter('m')">M</button>
-                <button class="m-2 p-2 btn btn-light" id="m" onclick="deleteLetter()"><i class="fa-solid fa-delete-left"></i></button>                
-            </div>
-        </div>
-        <footer class="footer mt-auto py-3">
-            <div class="container">
-                <a class="btn btn-secondary" href="https://github.com/cstewart2010/cv/issues/new" target="_blank" rel="noopener noreferrer">
-                    Got any suggestions or missing words?
-                </a>
+        <footer class="footer mt-auto pt-3">
+            <div class="mx-auto my-auto w-50">
+                <div class="d-flex justify-content-center">
+                    <button class="m-2 p-2 btn btn-light" id="q" onclick="clickLetter('q')">Q</button>
+                    <button class="m-2 p-2 btn btn-light" id="w" onclick="clickLetter('w')">W</button>
+                    <button class="m-2 p-2 btn btn-light" id="e" onclick="clickLetter('e')">E</button>
+                    <button class="m-2 p-2 btn btn-light" id="r" onclick="clickLetter('r')">R</button>
+                    <button class="m-2 p-2 btn btn-light" id="t" onclick="clickLetter('t')">T</button>
+                    <button class="m-2 p-2 btn btn-light" id="y" onclick="clickLetter('y')">Y</button>
+                    <button class="m-2 p-2 btn btn-light" id="u" onclick="clickLetter('u')">U</button>
+                    <button class="m-2 p-2 btn btn-light" id="i" onclick="clickLetter('i')">I</button>
+                    <button class="m-2 p-2 btn btn-light" id="o" onclick="clickLetter('o')">O</button>
+                    <button class="m-2 p-2 btn btn-light" id="p" onclick="clickLetter('p')">P</button>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button class="m-2 p-2 btn btn-light" id="a" onclick="clickLetter('a')">A</button>
+                    <button class="m-2 p-2 btn btn-light" id="s" onclick="clickLetter('s')">S</button>
+                    <button class="m-2 p-2 btn btn-light" id="d" onclick="clickLetter('d')">D</button>
+                    <button class="m-2 p-2 btn btn-light" id="f" onclick="clickLetter('f')">F</button>
+                    <button class="m-2 p-2 btn btn-light" id="g" onclick="clickLetter('g')">G</button>
+                    <button class="m-2 p-2 btn btn-light" id="h" onclick="clickLetter('h')">H</button>
+                    <button class="m-2 p-2 btn btn-light" id="j" onclick="clickLetter('j')">J</button>
+                    <button class="m-2 p-2 btn btn-light" id="k" onclick="clickLetter('k')">K</button>
+                    <button class="m-2 p-2 btn btn-light" id="l" onclick="clickLetter('l')">L</button>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button class="m-2 p-2 btn btn-light" id="enter" onclick="check()">Enter</button>
+                    <button class="m-2 p-2 btn btn-light" id="z" onclick="clickLetter('z')">Z</button>
+                    <button class="m-2 p-2 btn btn-light" id="x" onclick="clickLetter('x')">X</button>
+                    <button class="m-2 p-2 btn btn-light" id="c" onclick="clickLetter('c')">C</button>
+                    <button class="m-2 p-2 btn btn-light" id="v" onclick="clickLetter('v')">V</button>
+                    <button class="m-2 p-2 btn btn-light" id="b" onclick="clickLetter('b')">B</button>
+                    <button class="m-2 p-2 btn btn-light" id="n" onclick="clickLetter('n')">N</button>
+                    <button class="m-2 p-2 btn btn-light" id="m" onclick="clickLetter('m')">M</button>
+                    <button class="m-2 p-2 btn btn-light" id="m" onclick="deleteLetter()"><i class="fa-solid fa-delete-left"></i></button>                
+                </div>
             </div>
           </footer>
         <script src="https://kit.fontawesome.com/f5e339ea05.js" crossorigin="anonymous"></script>
