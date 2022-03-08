@@ -141,7 +141,7 @@ function postResults(counter){
         console.log(EndGameMessage[counter]);
         document.querySelector("#end-game .modal-title").textContent = EndGameMessage[counter];
         const modalBody = document.querySelector("#end-game .modal-body");
-        for (attempt in save){
+        for (const attempt in save){
             const nextPart = `${attempt === "7" ? "fail" : attempt}: ${Math.round(save[attempt]*10000/sum)/100}%`
             console.log(nextPart);
             const div = document.createElement("div");
@@ -149,8 +149,8 @@ function postResults(counter){
             div.classList.add("text-dark");
             modalBody.appendChild(div);
         }
-        const title = `Verble [${WORD.toUpperCase()}] ${attempt}/6`;
-        let copiedText = `${title}\n`;
+        const title = `Verble [${WORD.toUpperCase()}] ${counter}/6`;
+        let copiedText = `${title}\n\n`;
         document.querySelectorAll("#attempts .d-flex.justify-content-center").forEach(element => {
             let divText = '';
             element.querySelectorAll(".solution-letter").forEach(letterElement => {
