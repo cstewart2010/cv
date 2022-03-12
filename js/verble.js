@@ -137,10 +137,19 @@ const addResultToSave = (counter) => {
 function postResults(counter){
     const save = getSave();
     if (save){
-        const sum = Object.values(save).reduce((a, b) => a + b);
         console.log(EndGameMessage[counter]);
         document.querySelector("#end-game .modal-title").textContent = EndGameMessage[counter];
+        const title = `Verble [${WORD.toUpperCase()}] ${counter}/6`;
+        showStats(title);
+    }
+}
+
+function showStats(title){    
+    const save = getSave();
+    if (save){
+        const sum = Object.values(save).reduce((a, b) => a + b);
         const modalBody = document.querySelector("#end-game .modal-body");
+        modalBody.textContent = null;
         for (const attempt in save){
             const nextPart = `${attempt === "7" ? "fail" : attempt}: ${Math.round(save[attempt]*10000/sum)/100}%`
             console.log(nextPart);
@@ -149,7 +158,6 @@ function postResults(counter){
             div.classList.add("text-dark");
             modalBody.appendChild(div);
         }
-        const title = `Verble [${WORD.toUpperCase()}] ${counter}/6`;
         let copiedText = `${title}\n\n`;
         document.querySelectorAll("#attempts .d-flex.justify-content-center").forEach(element => {
             let divText = '';
