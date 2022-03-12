@@ -58,10 +58,22 @@
             <p>
                 You can view the results of each game in the browser console. Also, you can play multiple times a day. Have fun!
             </p>
-            <div class="py-2">
-                <a class="btn btn-secondary" href="https://github.com/cstewart2010/cv/issues/new" target="_blank" rel="noopener noreferrer">
-                    Got any suggestions or missing words?
-                </a>
+            <div class="d-flex justify-content-evenly">
+                <div class="py-2">
+                    <button class="btn btn-secondary" onclick="showStats('Current Stats')">
+                        Statistics
+                    </button>
+                </div>
+                <div class="py-2">
+                    <a class="btn btn-secondary" href="https://github.com/cstewart2010/cv/issues/new" target="_blank" rel="noopener noreferrer">
+                        Got any suggestions or missing words?
+                    </a>
+                </div>
+                <div class="py-2">
+                    <button class="btn btn-danger" onclick="addResultToSave('7')">
+                        Give up?
+                    </button>
+                </div>
             </div>
         </div>
         <div class="container my-2 w-50">

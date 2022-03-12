@@ -3446,7 +3446,6 @@ const WORDS = [
     "waxer",
     "calyx",
     "basil",
-    "coons",
     "seine",
     "piney",
     "lemma",
